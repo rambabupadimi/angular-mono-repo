@@ -1,0 +1,679 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+@mixin create-theme($custom-ui-theme) {
+  @include mat.all-component-themes($custom-ui-theme);
+
+  $color: mat.get-color-config($custom-ui-theme);
+  $config: mat.get-color-config($color);
+
+  $primary: map.get($config, 'primary');
+  $warn: map.get($config, 'warn');
+  $accent: map.get($config, 'accent');
+
+  $primaryColor: mat.get-color-from-palette($primary, 250);
+  $warnColor: mat.get-color-from-palette($warn, 50);
+  $accentColor: mat.get-color-from-palette($accent, 50);
+
+
+  .color-primary{
+    color: $primaryColor;
+  }
+
+  .color-secondary {
+    color:  #85abe3;
+  }
+
+
+  .login-button-section .login-button {
+    background-color:  #85abe3;
+    color: white;
+  }
+
+  .card-primary {
+    background-color: $primaryColor;
+  }
+  .card-warn {
+    background-color: $warnColor;
+  }
+  .card-accent {
+    background-color: $accentColor;
+  }
+  .color-mat-card {
+    background-color: $primaryColor;
+  }
+  // dark background
+  .dark-bg {
+    background-color: mat.get-color-from-palette($primary, 50);
+    color: mat.get-color-from-palette($primary, 100-contrast);
+  }
+  .basic-btn {
+    color: mat.get-color-from-palette($primary, 200-contrast);
+  }
+  .dark-bg-btn {
+    color: mat.get-color-from-palette($primary, 100-contrast);
+    background-color: mat.get-color-from-palette($primary, 50);
+  }
+  //  white color border
+  .transparent-border{
+      border: 1px solid mat.get-color-from-palette($primary, 200);
+  }
+  // black color border
+  .dark-border {
+    border: 1px solid mat.get-color-from-palette($primary, 250-contrast);
+  }
+  tr.mat-header-row {
+    background-color: mat.get-color-from-palette($primary, 350);
+    border-radius: 10px 10px 0px 0px;
+  }
+  th.mat-header-cell {
+    color: mat.get-color-from-palette($primary, 100-contrast);
+  }
+
+  // Lib Auth colors
+  .auth-wrap {
+    .auth-logo {
+      background-color: mat.get-color-from-palette($primary, 50);
+    }
+    .auth-right {
+      background-color: mat.get-color-from-palette($primary, 100);
+    }
+  }
+  // mat toolbar styles
+  .nav-bar {
+    overflow-x: auto;
+    .mat-toolbar {
+      background-color: #e5e5e5 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      .mat-tab-link {
+        color: #272524 !important;
+        font-size: 15px;
+        text-align: center;
+        line-height: 20px;
+        opacity: inherit;
+        font-family: "Stolzl-Bold" !important;
+        &:active {
+          // border-bottom: 8px solid $primaryColor;
+          box-shadow: none;
+        }
+       &:hover{
+         text-decoration: none;
+       }
+      }
+
+      .mat-tab-disabled {
+        // background: #d8d8d8;
+        color: gray !important;
+      }
+      .mat-tab-nav-bar,
+      .mat-tab-header {
+        border-bottom: 1px solid #000;
+        margin-left: 0;
+      }
+      .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+        box-shadow: none;
+        overflow: visible;
+      }
+    }
+    .mat-tab-group.mat-primary .mat-ink-bar,
+    .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+      background-color: #d2bfff !important;
+      height: 8px;
+    }
+    .mat-tab-link-container{
+      // overflow: auto;
+    }
+    .mat-tab-header-pagination-disabled .mat-tab-header-pagination-chevron{
+      border-color: transparent;
+    }
+  }
+  //   dropdown
+  // .select{
+  //   .mat-form-field{
+  //   background-color: $primaryColor !important;
+  //   border-radius: 10px 10px 0px 0px;
+  //   width: 100%;
+  //   height: 52px;
+  //   letter-spacing: 0.15em;
+  //   font-family: "Stolzl-Regular";
+  //   color:mat.get-color-from-palette($primary, 250-contrast)!important;
+  //   }
+  // }
+  // text area styles
+  .text-area-wrap {
+    .mat-form-field-flex {
+      height: 130px;
+    }
+    textarea.mat-input-element {
+      resize: inherit;
+    }
+    .mat-form-field-label {
+      letter-spacing: 0.15em;
+      font-family: 'Stolzl-Regular';
+      color: mat.get-color-from-palette($primary, 250-contrast) !important;
+    }
+  }
+}
+// basic btn
+.basic-btn {
+  border-radius: 10px !important;
+  letter-spacing: 15.5%;
+  height: 36px;
+}
+// dark btn
+.dark-bg-btn {
+  border-radius: 10px !important;
+  letter-spacing: 15.5%;
+  height: 36px;
+}
+.common-heading {
+  font-family: 'Stolzl-Medium';
+  // font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  color: #000000;
+}
+
+// upload files/images
+.image-upload {
+  width: 172px;
+  height: 146px;
+  border: 1px dashed #8d8d8d;
+  position: relative;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  .upload-file {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 30px;
+    cursor: pointer;
+  }
+  .upload-text {
+    top: 10%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    span {
+      color: rgba(39, 37, 36, 0.4);
+    }
+    cursor: pointer;
+  }
+}
+.image-upload-disable {
+  width: 172px;
+  height: 146px;
+  border: 1px dashed #8d8d8d;
+  position: inherit;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: auto;
+  .upload-file {
+    // width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 30px;
+    cursor: auto;
+  }
+  .upload-text {
+    top: 10%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    span {
+      color: rgba(39, 37, 36, 0.4);
+    }
+    cursor: auto;
+  }
+}
+.basic-btn {
+  min-width: 150px !important;
+}
+// search field
+
+.search-field {
+  .mat-form-field-flex {
+    background-color: #fff !important;
+  }
+}
+
+.text-area-wrap {
+  .mat-form-field-label {
+    white-space: inherit !important;
+  }
+}
+
+// spinner
+.spinner {
+  .mat-progress-spinner {
+    margin: 0 auto;
+  }
+}
+ // spinner
+ .web-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+}
+.strategy-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box {
+  .mat-checkbox-layout {
+    .mat-checkbox-inner-container {
+      width: 30px;
+      height: 30px;
+      .mat-checkbox-frame {
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .call-investor-wrap {
+    .search-field {
+      min-width: 300px !important;
+    }
+  }
+  .subscription-search{
+    .search-field {
+      min-width: 150px !important;
+      margin-right: 0;
+    }
+  }
+}
+.fund-search{
+  .search-field {
+    width: 250px !important;
+  }
+}
+
+// Styles for all input textarea and select  bg-color
+input,
+textarea,
+select {
+  &:-webkit-autofill {
+    &,
+    &:hover,
+    &:focus {
+      // border: 1px solid $main;
+      // -webkit-text-fill-color: $main;
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+      box-shadow: 0 0 0px 1000px transparent inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+}
+
+// added cursor pointer to the input file
+input::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+
+.check-box.indication-check{
+  .mat-checkbox-layout .mat-checkbox-inner-container .mat-checkbox-frame{
+    border-radius: inherit;
+    width: 20px;
+    height: 20px;
+  }
+  .mat-checkbox-frame{
+    border-color: inherit;
+  }
+  .mat-checkbox-layout .mat-checkbox-inner-container{
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+// pdf upload
+.pdf-upload{
+  width: 172px;
+  height: 146px;
+  border: 1px solid #272524;
+  border-radius: 10px;
+  position: relative;
+  margin-right: 30px;
+  .pdf-image{
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      margin-top: 15px;
+      margin-bottom: 15px;
+          img{
+              width: 30px;
+              height: 30px;
+          }
+      .delete-icon{
+          width: 15px;
+          height: 18px;
+          position: absolute;
+          right: -5px;
+          top: -5px;
+      }
+  }
+  .pdf-text{
+      padding: 10px;
+      .date-text{
+          color: rgba(39, 37, 36, 0.4);
+      }
+  }
+  .upload-file{
+      position: absolute;
+      left: 30px;
+      opacity: 0;
+  }
+}
+.back-icon-img{
+  height: 35px;
+  width: 35px;
+}
+
+// error text
+.mat-error {
+  margin-bottom: 10px;
+  margin-left: -10px;
+}
+
+//  event management check box
+.check-box.rsvp-check .mat-checkbox-layout .mat-checkbox-inner-container{
+  width: 25px;
+  height: 25px;
+  .mat-checkbox-frame{
+    border-radius: 0px;
+  }
+}
+
+//  time picker in add/edit event
+.timepicker-overlay{
+  z-index: 9999 !important;
+}
+.time-picker{
+  display: flex;
+  // height: 52px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  input{
+    background: transparent !important;
+    border: none;
+  }
+  input:focus-visible {
+    outline: none !important;
+  }
+  .ngx-material-timepicker-toggle{
+    right: 10px;
+    position: absolute;
+    bottom: 10px;
+  }
+  .mat-form-field{
+      padding: 0;
+      width: 100%;
+  }
+  .mat-form-field-flex{
+    background: rgba(0, 0, 0, 0.04) !important;
+    border-radius: 10px 10px 0 0;
+    padding: 0.75em 0.75em 0 0.75em;
+  }
+  .mat-form-field-label-wrapper{
+    top: -20px;
+  }
+}
+
+
+// calendar
+.cal-month-view{
+  .cal-day-cell:not(:last-child){
+    // border-right:0 !important;
+  }
+  .cal-cell-row{
+    padding: 10px 0px;
+  }
+  .cal-days{
+    border: 0 !important;
+    .cal-cell-row{
+      // border-bottom:0 !important;
+      padding: 0;
+      &:first-child{
+        // border-top: 1px solid #e1e1e1;
+      }
+    }
+  }
+  .cal-cell-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+      background-color: #fff;
+    }
+  }
+  // .cal-month-view .cal-day-number{
+  //   opacity: inherit !important;
+  //   color: #000 !important;
+  // }
+}
+
+//  user management btn styles
+.import-step-2-wrap{
+  .error-btn  {
+   line-height: 20px;
+   padding: 10px;
+  }
+}
+.menu-hover{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  transition-duration: 1s;
+  // background-color: #e5e5e5;
+  &:hover{
+    background-color: #e5e5e5;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    object-fit: contain;
+  }
+}
+.mat-form-field-prefix{
+  // bottom: 6px;
+}
+
+
+// dollar field
+.form-field-wrap .form-field.dollar-field .mat-form-field-flex {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-radius: 10px 10px 0px 0px;
+  padding: 7px 10px;
+  .mat-form-field-prefix{
+    color: #9E9E9E;
+  }
+}
+// percent field
+.form-field-wrap .form-field.percent-field .mat-form-field-flex {
+  // background: rgba(0, 0, 0, 0.04) !important;
+  // border-radius: 10px 10px 0px 0px;
+  // padding: 5px 10px;
+  .mat-form-field-suffix{
+    color: #9E9E9E;
+  }
+}
+
+// remove grey background for buttons
+.mat-ripple{
+  width: 0;
+  height: 0;
+}
+// filter btn
+.filter-btn.cdk-focused{
+  background-color: #fff !important;
+  .mat-ripple .mat-button-ripple{
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .mat-button-focus-overlay{
+    opacity: 0 !important;
+  }
+}
+
+.checkbox-header{
+  .mat-checkbox-frame{
+      border-color: 1px solid #fff !important;
+  }
+}
+.mat-sort-header-content{
+  text-align: left !important;
+}
+.event-artwork{
+  .mat-form-field{
+      padding: 0 20px 0px 0px !important;
+  }
+  .mat-form-field-underline{
+      width: 0 !important;
+  }
+}
+.mat-form-field{
+  line-height: inherit !important;
+}
+.account-filter-dialog{
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+// document upload
+.doc-card-header{
+  background: #000;
+    color: #fff;
+    padding: 15px 35px;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: -16px !important;
+    border-radius: 10px 10px 0px 0px;
+}
+.indication-chk{
+  .mat-checkbox-frame {
+    border-color: #fff ;
+}
+}
+
+.nav-bar.event-bar .mat-toolbar .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+  display: none !important;
+}
+
+
+// event calendar
+.event-calendar{
+  .cal-month-view .cal-day-cell.cal-today .cal-day-number{
+    background: #d2bfff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+  }
+  .cal-month-view .cal-cell-row:hover , .cal-month-view .cal-cell-top{
+    background-color: #fff;
+  }
+  .cal-month-view .cal-day-number{
+    opacity: inherit;
+  }
+  .cal-month-view .cal-day-cell.cal-weekend .cal-day-number{
+    color: #000;
+  }
+  .cal-month-view .cal-cell-row{
+    // align-items: baseline;
+  }
+  .cal-month-view .cal-header{
+    border-bottom: 1px solid #e1e1e1;
+  }
+}
+
+.upload-error{
+  margin-left: 0;
+}
+
+// mat table sticky header
+.mat-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0 !important;
+}
+
+.mat-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+}
+.indication-filter{
+  margin-top: 250px;
+  margin-right: -670px;
+  min-height: auto;
+    max-height: 380px !important;
+    overflow-x: hidden;
+}
+.table-wrap{
+  background: #fff;
+}
+
+
+.timepicker-overlay {
+  z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 10000000 !important;
+}
+.timepicker__header{
+  background-color: #d2bfff !important;
+}
+.timepicker-button{
+  color: #d2bfff !important;
+}
+.clock-face__number > span.active{
+  background-color: #d2bfff !important;
+}
+
+.clock-face__clock-hand {
+  background-color: #d2bfff !important;
+
+  &::after {
+    background-color: #d2bfff !important;
+  }
+
+  &::before {
+    border-color: #d2bfff !important;
+  }
+}
+
+  .timepicker-dial__control:focus-visible {
+    outline-color: #d2bfff !important
+  }
+// mat option text
+.mat-option-text{
+  font-size: 14px;
+  word-break: break-word;
+  white-space: normal;
+  line-height: normal;
+}

@@ -1,0 +1,52 @@
+<div class="login">
+  <!--logo section-->
+  <div class="logo-section">
+    <img src="assets/images/logonew.png" />
+  </div>
+
+
+
+  <!--form secton-->
+  <form class="form-section" (ngSubmit)="doLogin()" [formGroup]="loginFormGroup">
+    <div>
+      <span class="fw-700 font-20 color-primary">Login</span>
+    </div>
+    <!-- email -->
+    <div class="form-field-wrap m-t-10">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error *ngIf="loginFormGroup.hasError('required','email')">
+          Email required</mat-error>
+        <mat-error *ngIf="!loginFormGroup.hasError('required','email') && !loginFormGroup.get('email').pattern">
+          Enter correct email</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- password -->
+
+    <div class="form-field-wrap m-t-10">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="text" formControlName="password" />
+        <mat-error *ngIf="loginFormGroup.hasError('required','password')">
+          Password required</mat-error>
+        <mat-error *ngIf="!loginFormGroup.hasError('required','password') && !loginFormGroup.get('password').minLength">
+          Password minLength should be 8 characters</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="forgot-password color-primary">
+      <span class="font-14 fw-700">Forgot Password</span>
+    </div>
+
+    <div class="login-button-section m-t-30">
+
+      <button mat-raised-button *ngIf="!(isLoading$ | async) " type="submit" color="primary" class="login-button fw-700">Login</button>
+      <button mat-flat-button  *ngIf="isLoading$ | async" class="login-button fw-700" >
+        <mat-spinner class="m-auto" [diameter]="20"></mat-spinner></button>
+
+    </div>
+  </form>
+
+</div>

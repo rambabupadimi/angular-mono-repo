@@ -1,0 +1,110 @@
+{
+  "name": "angular-user-portal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/angular-user-portal/src",
+  "prefix": "angular-monorepo-demo",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/angular-user-portal",
+        "index": "apps/angular-user-portal/src/index.html",
+        "main": "apps/angular-user-portal/src/main.ts",
+        "polyfills": "apps/angular-user-portal/src/polyfills.ts",
+        "tsConfig": "apps/angular-user-portal/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/angular-user-portal/src/favicon.ico",
+          "apps/angular-user-portal/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets",
+            "output": "assets"
+          }
+        ],
+        "styles": [
+          "apps/angular-user-portal/src/styles.scss",
+          "apps/angular-user-portal/src/museosans.scss",
+          "node_modules/ngx-toastr/toastr.css"
+
+
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/angular-user-portal/src/environments/environment.ts",
+              "with": "apps/angular-user-portal/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "angular-user-portal:build:production"
+        },
+        "development": {
+          "browserTarget": "angular-user-portal:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "angular-user-portal:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/angular-user-portal/**/*.ts",
+          "apps/angular-user-portal/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/angular-user-portal/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

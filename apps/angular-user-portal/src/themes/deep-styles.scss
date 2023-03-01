@@ -1,0 +1,16 @@
+
+
+// change input border color
+::ng-deep .form-field.mat-form-field-appearance-outline .mat-form-field-outline{
+  color: #3e287c;
+}
+
+// change label color
+::ng-deep .mat-form-field-label {
+  color: #3e287c;
+}
+
+// change lable color on focus
+::ng-deep .form-field.mat-focused .mat-form-field-label {
+  color:  #3e287c;;
+ }

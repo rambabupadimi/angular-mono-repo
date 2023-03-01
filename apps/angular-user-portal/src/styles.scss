@@ -1,0 +1,122 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// regular style toast
+@use '~ngx-toastr/toastr';
+
+
+@use './themes/common-styles.scss' as common;
+@use './themes/helper-styles.scss';
+@use './themes/deep-styles.scss';
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+
+$custom-typography: mat.define-typography-config($font-family: '"MuseoSans-500", sans-serif;');
+@include mat.core($custom-typography);
+
+
+$color-primary: (
+  50: #272425,
+  100: #F4F4F2,
+  150: #C4C4C4,
+  200: #DADADA,
+  250: #3e287c,
+  300: rgba(255,255,255,0.5),
+  350: #272524,
+
+  contrast: (
+    50: #000000,
+    100: #FFFFFF,
+    150: rgba(0,0,0,0.87),
+    200: #272524,
+    250: #272425,
+    300: rgba(0,0,0,0.5),
+  ),
+);
+$color-secondary: (
+    // background colors
+    50: #D2BFFF,
+
+    contrast: (
+      // text colors
+      50: #272524
+    ),
+);
+
+
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ibex-investors-admin-portal-primary: mat.define-palette(
+  $color-primary,
+  $default: 250,
+  $lighter: 50,
+  $darker: 50,
+  $text: 50
+);
+
+// $ibex-investors-admin-portal-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$ibex-investors-admin-portal-accent: mat.define-palette(
+  $color-secondary,
+  $default: 50,
+  $lighter: 50,
+  $darker: 50,
+  $text: 50
+);
+
+// The warn palette is optional (defaults to red).
+$ibex-investors-admin-portal-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ibex-investors-admin-portal-theme: mat.define-light-theme((
+  color: (
+    primary: $ibex-investors-admin-portal-primary,
+    accent: $ibex-investors-admin-portal-accent,
+    warn: $ibex-investors-admin-portal-warn,
+  )
+));
+
+
+@include common.create-theme($ibex-investors-admin-portal-theme);
+
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+// body { height: 100%; }
+// body {
+//   margin: 0;
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+// }
+
+// * {
+//   font-family: "Gilroy";
+// }
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #F4F4F2 !important;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  font-family: "Stolzl-Regular";
+  overflow: hidden;
+  background-color: #F4F4F2 !important;
+}
+* {
+  box-sizing: border-box;
+}
+

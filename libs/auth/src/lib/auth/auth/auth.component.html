@@ -1,0 +1,14 @@
+<div class="auth-section">
+<section class="left-section">
+
+  <img src="assets/images/logonew.png ">
+  <div class="heading fw-700">
+  <span *ngIf="isAdmin else elseBlock"> Admin Portal</span>
+  <ng-template #elseBlock > User Portal</ng-template>
+  </div>
+</section>
+<section class="right-section">
+  <router-outlet></router-outlet>
+</section>
+
+</div>
