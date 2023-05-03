@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import {  AppRoutingModule } from './app.routes';
-import { AuthModule } from '@angular-monorepo-demo/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
@@ -20,11 +19,9 @@ import { clearState } from './users/+state/users.reducer';
   declarations: [AppComponent, NxWelcomeComponent, NotFoundComponent],
   imports: [
     BrowserModule,
-    AuthModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-   // ToastrModule.forRoot(),
     StoreModule.forRoot([],{ metaReducers: [clearState] }),
     EffectsModule.forRoot([]),
     ToastrModule.forRoot({

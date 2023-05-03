@@ -19,7 +19,6 @@ import { ENVIRONMENT } from '@angular-monorepo-demo/environment';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-    AuthModule,
     HttpClientModule,
     BrowserAnimationsModule,
     StoreModule.forRoot([]),

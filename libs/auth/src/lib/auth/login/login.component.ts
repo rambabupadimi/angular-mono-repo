@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AuthFacade } from '../+state/auth.facade';
-
+import { ENVIRONMENT } from '@angular-monorepo-demo/environment';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -20,13 +21,17 @@ export class LoginComponent implements OnInit {
   loginFailure$?: Observable<any>;
 
 
-  constructor(private authFacade: AuthFacade, private toastr: ToastrService,private router: Router) {
+  constructor(private authFacade: AuthFacade,
+              private toastr: ToastrService,
+              private router: Router, 
+              @Inject(ENVIRONMENT) private env: any) {
     this.isLoading$ = authFacade.$loginLoadingStatus;
     this.loginSuccess$ = authFacade.$loginSuccess;
     this.loginFailure$ = authFacade.$loginfailed;
    }
 
   ngOnInit(): void {
+    console.log(this.env)
     this.initLoginForm();
   }
 
@@ -42,10 +47,14 @@ export class LoginComponent implements OnInit {
     })
 
     this.loginSuccess$?.subscribe((response) => {
-      console.log('called login success..', response);
       if (response) {
         this.toastr.success('User logged in success', "Success")
-        this.router.navigate(['users']);
+        if(this.env.type === 'admin') {
+          this.router.navigate(['admin-dashboard']);
+        } else {
+          this.router.navigate(['user-dashboard']);
+
+        }
       }
     })
 

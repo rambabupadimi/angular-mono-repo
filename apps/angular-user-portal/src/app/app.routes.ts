@@ -9,9 +9,11 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'user',
-
-    // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-    loadChildren: () => import('../../../../libs/auth/src/lib/auth/auth.module').then(m=>m.AuthModule)
+    loadChildren: () => import('@angular-monorepo-demo/auth').then(m=>m.AuthModule)
+  },
+  {
+    path:'user-dashboard',
+    loadChildren: () => import('../../../angular-user-portal/src/app/dashboard/dashboard.module').then(m=>m.DashboardModule)
   }
 
 ];

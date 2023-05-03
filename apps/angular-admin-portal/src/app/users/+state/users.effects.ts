@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
-import { switchMap, map, catchError,of } from 'rxjs';
+import { switchMap, map, catchError,of, tap } from 'rxjs';
 import { UserService } from '../user.service';
 
 import { initUsers, loadUsersSuccess, loadUsersFailure, userLogout,userLogoutSuccess,userLogoutFailure }  from './users.actions';
@@ -49,9 +49,10 @@ export class UsersEffects {
         return this.userService.userLogout().pipe(
           map((response) => {
             localStorage.clear();
-            this.router.navigateByUrl('/login');
             return userLogoutSuccess()
-
+          }),
+          tap(()=>{
+            this.router.navigateByUrl('');
           }),
           catchError((errorResp) => {
            // const error = errorResp.error.message;
